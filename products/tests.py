@@ -24,3 +24,21 @@ class ProductTests(TestCase):
         self.assertContains(response, "Тестовый товар")
         self.assertContains(response, "ART-001")
         self.assertTemplateUsed(response, "products/product_list.html")
+
+    def test_product_list_json(self):
+        response = self.client.get(reverse("product-list-json"))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response["Content-Type"], "application/json")
+        self.assertEqual(
+            response.json(),
+            {
+                "products": [
+                    {
+                        "article": "ART-001",
+                        "name": "Тестовый товар",
+                        "price": "199.90",
+                    }
+                ]
+            },
+        )
