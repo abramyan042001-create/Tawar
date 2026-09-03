@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Список товаров</title>
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; background: #f4f6f8; color: #20242a; }
+        main { width: min(900px, calc(100% - 32px)); margin: 48px auto; }
+        h1 { margin-bottom: 24px; }
+        table { width: 100%; border-collapse: collapse; background: white; box-shadow: 0 4px 18px #00000012; }
+        th, td { padding: 14px 16px; border-bottom: 1px solid #e7e9ec; text-align: left; }
+        th { background: #263238; color: white; }
+        .empty { text-align: center; color: #687078; padding: 32px; }
+    </style>
+</head>
+<body>
+<main>
+    <h1>Товары</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Артикул</th>
+                <th>Наименование</th>
+                <th>Цена</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.article }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.price }} ₽</td>
+                </tr>
+            {% empty %}
+                <tr><td class="empty" colspan="3">Товаров пока нет</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</main>
+</body>
+</html>
